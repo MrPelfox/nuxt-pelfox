@@ -33,7 +33,7 @@ const socials = [
 
         <div class="flex flex-col md:flex-row justify-between items-center w-full gap-4">
           <p class="text-white/40 text-sm">
-            © 2024 Pelfox. All rights reserved.
+            © 2025 Pelfox. All rights reserved.
           </p>
           <p class="text-white/40 text-sm">
             Designed by Pelfox. Powered by Nuxt
