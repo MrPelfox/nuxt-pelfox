@@ -26,6 +26,7 @@ export const SchemaOrg: typeof import("../components/SchemaOrg.vue").default
 export const SiteFooter: typeof import("../components/SiteFooter.vue").default
 export const SiteHeader: typeof import("../components/SiteHeader.vue").default
 export const SkillsSection: typeof import("../components/SkillsSection.vue").default
+export const ThemeSelector: typeof import("../components/ThemeSelector.vue").default
 export const NuxtWelcome: typeof import("../node_modules/nuxt/dist/app/components/welcome.vue").default
 export const NuxtLayout: typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout").default
 export const NuxtErrorBoundary: typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue").default
@@ -61,6 +62,7 @@ export const LazySchemaOrg: LazyComponent<typeof import("../components/SchemaOrg
 export const LazySiteFooter: LazyComponent<typeof import("../components/SiteFooter.vue").default>
 export const LazySiteHeader: LazyComponent<typeof import("../components/SiteHeader.vue").default>
 export const LazySkillsSection: LazyComponent<typeof import("../components/SkillsSection.vue").default>
+export const LazyThemeSelector: LazyComponent<typeof import("../components/ThemeSelector.vue").default>
 export const LazyNuxtWelcome: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/welcome.vue").default>
 export const LazyNuxtLayout: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-layout").default>
 export const LazyNuxtErrorBoundary: LazyComponent<typeof import("../node_modules/nuxt/dist/app/components/nuxt-error-boundary.vue").default>
