@@ -3,6 +3,12 @@ import { Button } from '@/components/ui/button'
 import { useLanguage } from '~/composables/useLanguage'
 
 const { t } = useLanguage()
+
+const emit = defineEmits(['navigate'])
+
+const scrollTo = (id: string) => {
+  emit('navigate', id)
+}
 </script>
 
 <template>
@@ -17,8 +23,8 @@ const { t } = useLanguage()
     </div>
 
     <div class="mt-5 flex gap-3 sm:gap-4 justify-center items-center flex-col sm:flex-row w-full sm:w-auto px-4">
-      <Button variant="outline" class="w-full sm:w-auto">{{ t('buttons.explore') }}</Button>
-      <Button class="w-full sm:w-auto">{{ t('buttons.getInTouch') }}</Button>
+      <Button variant="outline" class="w-full sm:w-auto" @click="scrollTo('#projects')">{{ t('buttons.explore') }}</Button>
+      <Button class="w-full sm:w-auto" @click="scrollTo('#contact')">{{ t('buttons.getInTouch') }}</Button>
     </div>
   </section>
 </template>

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref, onMounted } from 'vue'
+import { ref, onMounted, watch } from 'vue'
 import { Palette, X, Monitor, Tv, Cloud, Waves, Sunset, TreePine } from 'lucide-vue-next'
 import { useLanguage } from '~/composables/useLanguage'
 
@@ -7,6 +7,7 @@ const { t } = useLanguage()
 
 const isOpen = ref(false)
 const currentTheme = ref('default')
+const panelRef = ref<HTMLElement | null>(null)
 
 const themes = [
   { id: 'default', key: 'modern', icon: Monitor, preview: { bg: '#000000', accent: '#ffffff', text: '#999999' } },
@@ -31,6 +32,22 @@ const selectTheme = (themeId: string) => {
   localStorage.setItem('theme', themeId)
 }
 
+const handlePanelWheel = (e: WheelEvent) => {
+  e.stopPropagation()
+}
+
+const handlePanelTouch = (e: TouchEvent) => {
+  e.stopPropagation()
+}
+
+watch(isOpen, (open) => {
+  if (open) {
+    document.body.style.overflow = 'hidden'
+  } else {
+    document.body.style.overflow = ''
+  }
+})
+
 onMounted(() => {
   const savedTheme = localStorage.getItem('theme')
   if (savedTheme && ['default', 'retro', 'soft', 'ocean', 'sunset', 'forest'].includes(savedTheme)) {
@@ -54,7 +71,13 @@ onMounted(() => {
   />
 
   <!-- Theme Panel -->
-  <div class="theme-panel" :class="{ open: isOpen }">
+  <div 
+    ref="panelRef"
+    class="theme-panel" 
+    :class="{ open: isOpen }"
+    @wheel.stop="handlePanelWheel"
+    @touchmove.stop="handlePanelTouch"
+  >
     <div class="flex justify-between items-center mb-6">
       <h3 class="text-white text-lg font-semibold">{{ t('theme.title') }}</h3>
       <button 

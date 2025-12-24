@@ -232,6 +232,8 @@
   transition: right 0.4s ease;
   padding: 24px;
   overflow-y: auto;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
 }
 
 .theme-panel.open {

@@ -101,7 +101,7 @@ onUnmounted(() => {
   <div class="overflow-hidden">
     <div ref="scrollContainer" class="fixed top-0 left-0 w-full flex flex-col items-center will-change-transform">
       <SiteHeader @toggle-menu="toggleMobileNav" @navigate="navigateTo" />
-      <HeroSection />
+      <HeroSection @navigate="navigateTo" />
       <AboutSection />
       <ProjectsSection />
       <SkillsSection />
