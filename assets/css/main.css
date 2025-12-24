@@ -1,0 +1,42 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    overflow: hidden;
+  }
+  
+  /* Hide scrollbar */
+  ::-webkit-scrollbar {
+    display: none;
+  }
+  
+  html {
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+  }
+}
+
+.gradient-text {
+  background: linear-gradient(180deg, #999 0%, #fff 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.glass-panel {
+  background: url('/assets/login-bg.png') no-repeat center center;
+  background-size: cover;
+  @apply bg-card border border-border;
+}
+
+.text-panel {
+  background: url('/assets/text-bg.png') no-repeat center center;
+  background-size: cover;
+  @apply bg-card;
+}

@@ -1,0 +1,1 @@
+export { default } from "file:///C:/Users/pelfox/Desktop/Pelfox%20-%20Portfolio/pelfox-nuxt/node_modules/@nuxt/vite-builder/dist/runtime/vite-node.mjs"
