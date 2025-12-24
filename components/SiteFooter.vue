@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Github, Instagram } from 'lucide-vue-next'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 
 const socials = [
   { icon: Github, href: 'https://github.com/Mr-Pelfox', label: 'GitHub' },
@@ -13,7 +16,7 @@ const socials = [
       <div class="flex flex-col items-center text-center">
         <h3 class="gradient-text text-4xl md:text-5xl font-semibold mb-4">Pelfox</h3>
         <p class="text-white font-light text-base max-w-[400px] mb-8">
-          Let's create amazing projects together. Always open to new ideas.
+          {{ t('footer.tagline') }}
         </p>
 
         <div class="flex gap-4 mb-10">
@@ -33,10 +36,10 @@ const socials = [
 
         <div class="flex flex-col md:flex-row justify-between items-center w-full gap-4">
           <p class="text-white/40 text-sm">
-            © 2025 Pelfox. All rights reserved.
+            {{ t('footer.rights') }}
           </p>
           <p class="text-white/40 text-sm">
-            Designed by Pelfox. Powered by Nuxt
+            {{ t('footer.powered') }}
           </p>
         </div>
       </div>

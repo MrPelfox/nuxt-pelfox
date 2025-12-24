@@ -20,6 +20,7 @@ interface _GlobalComponents {
   'AboutSection': typeof import("../../components/AboutSection.vue").default
   'ContactSection': typeof import("../../components/ContactSection.vue").default
   'HeroSection': typeof import("../../components/HeroSection.vue").default
+  'LanguageToggle': typeof import("../../components/LanguageToggle.vue").default
   'MobileNav': typeof import("../../components/MobileNav.vue").default
   'ProjectsSection': typeof import("../../components/ProjectsSection.vue").default
   'SchemaOrg': typeof import("../../components/SchemaOrg.vue").default
@@ -56,6 +57,7 @@ interface _GlobalComponents {
   'LazyAboutSection': LazyComponent<typeof import("../../components/AboutSection.vue").default>
   'LazyContactSection': LazyComponent<typeof import("../../components/ContactSection.vue").default>
   'LazyHeroSection': LazyComponent<typeof import("../../components/HeroSection.vue").default>
+  'LazyLanguageToggle': LazyComponent<typeof import("../../components/LanguageToggle.vue").default>
   'LazyMobileNav': LazyComponent<typeof import("../../components/MobileNav.vue").default>
   'LazyProjectsSection': LazyComponent<typeof import("../../components/ProjectsSection.vue").default>
   'LazySchemaOrg': LazyComponent<typeof import("../../components/SchemaOrg.vue").default>

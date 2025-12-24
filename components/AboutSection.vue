@@ -1,4 +1,8 @@
 <script setup lang="ts">
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
+
 const games = [
   { icon: 'M', title: 'Minecraft' },
   { icon: 'V', title: 'Valorant' },
@@ -10,9 +14,9 @@ const games = [
   <section id="about" class="w-[80%] max-w-[1200px] flex flex-col md:flex-row gap-4 mt-5">
     <article class="glass-panel w-full md:w-1/2 min-h-[400px] md:h-[55vh] p-6 rounded-xl flex flex-col justify-center items-center">
       <div class="text-center md:text-left w-full">
-        <h2 class="text-white font-normal underline mb-2">My name is Pelfox</h2>
+        <h2 class="text-white font-normal underline mb-2">{{ t('about.title') }}</h2>
         <p class="text-white font-light">
-          I started my design journey at age 11 and developed myself beyond what was necessary. I enjoy playing games.
+          {{ t('about.description') }}
         </p>
       </div>
 
@@ -43,8 +47,8 @@ const games = [
         class="w-full h-[calc(100%-80px)] object-cover"
       />
       <div class="p-4 text-left">
-        <h3 class="text-white font-normal underline mb-1">p4lfox</h3>
-        <p class="text-white font-light text-sm">p4lfox is my Minecraft character.</p>
+        <h3 class="text-white font-normal underline mb-1">{{ t('about.characterName') }}</h3>
+        <p class="text-white font-light text-sm">{{ t('about.characterDesc') }}</p>
       </div>
     </aside>
   </section>

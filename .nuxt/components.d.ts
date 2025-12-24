@@ -20,6 +20,7 @@ export const Textarea: typeof import("../components/ui/textarea/Textarea.vue").d
 export const AboutSection: typeof import("../components/AboutSection.vue").default
 export const ContactSection: typeof import("../components/ContactSection.vue").default
 export const HeroSection: typeof import("../components/HeroSection.vue").default
+export const LanguageToggle: typeof import("../components/LanguageToggle.vue").default
 export const MobileNav: typeof import("../components/MobileNav.vue").default
 export const ProjectsSection: typeof import("../components/ProjectsSection.vue").default
 export const SchemaOrg: typeof import("../components/SchemaOrg.vue").default
@@ -56,6 +57,7 @@ export const LazyTextarea: LazyComponent<typeof import("../components/ui/textare
 export const LazyAboutSection: LazyComponent<typeof import("../components/AboutSection.vue").default>
 export const LazyContactSection: LazyComponent<typeof import("../components/ContactSection.vue").default>
 export const LazyHeroSection: LazyComponent<typeof import("../components/HeroSection.vue").default>
+export const LazyLanguageToggle: LazyComponent<typeof import("../components/LanguageToggle.vue").default>
 export const LazyMobileNav: LazyComponent<typeof import("../components/MobileNav.vue").default>
 export const LazyProjectsSection: LazyComponent<typeof import("../components/ProjectsSection.vue").default>
 export const LazySchemaOrg: LazyComponent<typeof import("../components/SchemaOrg.vue").default>

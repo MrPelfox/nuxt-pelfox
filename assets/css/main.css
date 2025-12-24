@@ -9,6 +9,7 @@
   body {
     @apply bg-background text-foreground;
     overflow: hidden;
+    font-family: 'Inter', system-ui, sans-serif;
   }
   
   /* Hide scrollbar */
@@ -21,6 +22,14 @@
     -ms-overflow-style: none;
   }
 }
+
+/* ===== THEME FONTS ===== */
+[data-theme="default"] body { font-family: 'Inter', system-ui, sans-serif; }
+[data-theme="retro"] body { font-family: 'VT323', 'Courier New', monospace; font-size: 1.1em; }
+[data-theme="soft"] body { font-family: 'Quicksand', sans-serif; }
+[data-theme="ocean"] body { font-family: 'Nunito', sans-serif; }
+[data-theme="sunset"] body { font-family: 'Raleway', sans-serif; }
+[data-theme="forest"] body { font-family: 'Poppins', sans-serif; }
 
 .gradient-text {
   background: linear-gradient(180deg, #999 0%, #fff 100%);
@@ -44,7 +53,6 @@
 /* ===== RETRO THEME ===== */
 [data-theme="retro"] body {
   background-color: #0a0a0a !important;
-  font-family: 'VT323', 'Courier New', monospace;
 }
 
 [data-theme="retro"] .gradient-text {

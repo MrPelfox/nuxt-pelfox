@@ -1,13 +1,14 @@
 <script setup lang="ts">
-import { onMounted, ref } from 'vue'
-import gsap from 'gsap'
+import { onMounted, onUnmounted, ref } from 'vue'
 
 const scrollContainer = ref<HTMLElement | null>(null)
 const mobileNavOpen = ref(false)
 
 let currentScroll = 0
 let targetScroll = 0
-const EASE_FACTOR = 0.05
+const EASE_FACTOR = 0.08
+let isMobile = false
+let touchStartY = 0
 
 const toggleMobileNav = () => {
   mobileNavOpen.value = !mobileNavOpen.value
@@ -32,34 +33,67 @@ const navigateTo = (href: string) => {
   closeMobileNav()
 }
 
+const getMaxScroll = () => {
+  if (!scrollContainer.value) return 0
+  return Math.max(0, scrollContainer.value.getBoundingClientRect().height - window.innerHeight)
+}
+
+const handleWheel = (e: WheelEvent) => {
+  if (mobileNavOpen.value) return
+  e.preventDefault()
+  targetScroll += e.deltaY
+  targetScroll = Math.max(0, Math.min(targetScroll, getMaxScroll()))
+}
+
+const handleTouchStart = (e: TouchEvent) => {
+  if (mobileNavOpen.value) return
+  touchStartY = e.touches[0].clientY
+}
+
+const handleTouchMove = (e: TouchEvent) => {
+  if (mobileNavOpen.value) return
+  e.preventDefault()
+  const touchY = e.touches[0].clientY
+  const deltaY = touchStartY - touchY
+  touchStartY = touchY
+  
+  targetScroll += deltaY * 1.5
+  targetScroll = Math.max(0, Math.min(targetScroll, getMaxScroll()))
+}
+
+const animateScroll = () => {
+  currentScroll += (targetScroll - currentScroll) * EASE_FACTOR
+  if (scrollContainer.value) {
+    scrollContainer.value.style.transform = `translate3d(0, -${currentScroll}px, 0)`
+  }
+  requestAnimationFrame(animateScroll)
+}
+
 onMounted(() => {
   if (!scrollContainer.value) return
 
+  isMobile = 'ontouchstart' in window
+
   const updateBodyHeight = () => {
-    document.body.style.height = `${scrollContainer.value?.getBoundingClientRect().height}px`
-  }
-
-  const handleWheel = (e: WheelEvent) => {
-    if (mobileNavOpen.value) return
-    e.preventDefault()
-    targetScroll += e.deltaY
-    const maxScroll = document.body.scrollHeight - window.innerHeight
-    targetScroll = Math.max(0, Math.min(targetScroll, maxScroll))
-  }
-
-  const animateScroll = () => {
-    currentScroll += (targetScroll - currentScroll) * EASE_FACTOR
     if (scrollContainer.value) {
-      scrollContainer.value.style.transform = `translate3d(0, -${currentScroll}px, 0)`
+      document.body.style.height = `${scrollContainer.value.getBoundingClientRect().height}px`
     }
-    requestAnimationFrame(animateScroll)
   }
 
   setTimeout(updateBodyHeight, 100)
   window.addEventListener('load', updateBodyHeight)
   window.addEventListener('resize', updateBodyHeight)
   window.addEventListener('wheel', handleWheel, { passive: false })
+  window.addEventListener('touchstart', handleTouchStart, { passive: true })
+  window.addEventListener('touchmove', handleTouchMove, { passive: false })
+  
   animateScroll()
+})
+
+onUnmounted(() => {
+  window.removeEventListener('wheel', handleWheel)
+  window.removeEventListener('touchstart', handleTouchStart)
+  window.removeEventListener('touchmove', handleTouchMove)
 })
 </script>
 

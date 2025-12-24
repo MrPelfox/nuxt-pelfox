@@ -1,5 +1,8 @@
 <script setup lang="ts">
 import { Button } from '@/components/ui/button'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 
 defineProps<{
   isOpen: boolean
@@ -8,11 +11,11 @@ defineProps<{
 const emit = defineEmits(['close', 'navigate'])
 
 const navLinks = [
-  { href: '#hero', label: 'Hero' },
-  { href: '#about', label: 'Me' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#hero', key: 'nav.hero' },
+  { href: '#about', key: 'nav.about' },
+  { href: '#projects', key: 'nav.projects' },
+  { href: '#skills', key: 'nav.skills' },
+  { href: '#contact', key: 'nav.contact' },
 ]
 
 const handleNavClick = (e: Event, href: string) => {
@@ -41,9 +44,9 @@ const handleNavClick = (e: Event, href: string) => {
           class="text-white px-5 py-4 rounded-xl hover:bg-white/10 transition-colors"
           @click="handleNavClick($event, link.href)"
         >
-          {{ link.label }}
+          {{ t(link.key) }}
         </a>
-        <Button class="mt-4" @click="handleNavClick($event, '#contact')">Contact Me</Button>
+        <Button class="mt-4" @click="handleNavClick($event, '#contact')">{{ t('nav.contactMe') }}</Button>
       </div>
     </nav>
   </Teleport>

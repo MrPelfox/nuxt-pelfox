@@ -1,15 +1,18 @@
 <script setup lang="ts">
 import { Menu } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 
 const emit = defineEmits(['toggle-menu', 'navigate'])
 
 const navLinks = [
-  { href: '#hero', label: 'Hero' },
-  { href: '#about', label: 'Me' },
-  { href: '#projects', label: 'Projects' },
-  { href: '#skills', label: 'Skills' },
-  { href: '#contact', label: 'Contact' },
+  { href: '#hero', key: 'nav.hero' },
+  { href: '#about', key: 'nav.about' },
+  { href: '#projects', key: 'nav.projects' },
+  { href: '#skills', key: 'nav.skills' },
+  { href: '#contact', key: 'nav.contact' },
 ]
 
 const handleNavClick = (e: Event, href: string) => {
@@ -32,19 +35,23 @@ const handleNavClick = (e: Event, href: string) => {
         class="text-white/75 px-4 py-2 rounded-lg hover:bg-white/10 hover:text-white transition-all duration-300"
         @click="handleNavClick($event, link.href)"
       >
-        {{ link.label }}
+        {{ t(link.key) }}
       </a>
     </nav>
 
-    <div class="hidden md:block">
-      <Button @click="handleNavClick($event, '#contact')">Contact Me</Button>
+    <div class="hidden md:flex items-center gap-3">
+      <LanguageToggle />
+      <Button @click="handleNavClick($event, '#contact')">{{ t('nav.contactMe') }}</Button>
     </div>
 
-    <button
-      class="md:hidden flex flex-col gap-1 p-2"
-      @click="emit('toggle-menu')"
-    >
-      <Menu class="w-6 h-6 text-white" />
-    </button>
+    <div class="md:hidden flex items-center gap-2">
+      <LanguageToggle />
+      <button
+        class="flex flex-col gap-1 p-2"
+        @click="emit('toggle-menu')"
+      >
+        <Menu class="w-6 h-6 text-white" />
+      </button>
+    </div>
   </header>
 </template>

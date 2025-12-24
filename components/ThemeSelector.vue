@@ -1,77 +1,20 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import { Palette, X, Monitor, Tv, Cloud, Waves, Sunset, TreePine } from 'lucide-vue-next'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 
 const isOpen = ref(false)
 const currentTheme = ref('default')
 
 const themes = [
-  {
-    id: 'default',
-    name: 'Modern',
-    description: 'Clean & minimal dark theme',
-    icon: Monitor,
-    preview: {
-      bg: '#000000',
-      accent: '#ffffff',
-      text: '#999999'
-    }
-  },
-  {
-    id: 'retro',
-    name: 'Retro CRT',
-    description: 'Classic green terminal vibes',
-    icon: Tv,
-    preview: {
-      bg: '#0a0a0a',
-      accent: '#33ff33',
-      text: '#ffcc00'
-    }
-  },
-  {
-    id: 'soft',
-    name: 'Soft Pastel',
-    description: 'Gentle purple dark theme',
-    icon: Cloud,
-    preview: {
-      bg: '#1a1a2e',
-      accent: '#a78bfa',
-      text: '#c084fc'
-    }
-  },
-  {
-    id: 'ocean',
-    name: 'Ocean',
-    description: 'Deep blue sea vibes',
-    icon: Waves,
-    preview: {
-      bg: '#0c1929',
-      accent: '#38bdf8',
-      text: '#06b6d4'
-    }
-  },
-  {
-    id: 'sunset',
-    name: 'Sunset',
-    description: 'Warm orange & pink tones',
-    icon: Sunset,
-    preview: {
-      bg: '#1a1215',
-      accent: '#fb923c',
-      text: '#f43f5e'
-    }
-  },
-  {
-    id: 'forest',
-    name: 'Forest',
-    description: 'Natural green harmony',
-    icon: TreePine,
-    preview: {
-      bg: '#0f1a14',
-      accent: '#4ade80',
-      text: '#22c55e'
-    }
-  }
+  { id: 'default', key: 'modern', icon: Monitor, preview: { bg: '#000000', accent: '#ffffff', text: '#999999' } },
+  { id: 'retro', key: 'retro', icon: Tv, preview: { bg: '#0a0a0a', accent: '#33ff33', text: '#ffcc00' } },
+  { id: 'soft', key: 'soft', icon: Cloud, preview: { bg: '#1a1a2e', accent: '#a78bfa', text: '#c084fc' } },
+  { id: 'ocean', key: 'ocean', icon: Waves, preview: { bg: '#0c1929', accent: '#38bdf8', text: '#06b6d4' } },
+  { id: 'sunset', key: 'sunset', icon: Sunset, preview: { bg: '#1a1215', accent: '#fb923c', text: '#f43f5e' } },
+  { id: 'forest', key: 'forest', icon: TreePine, preview: { bg: '#0f1a14', accent: '#4ade80', text: '#22c55e' } }
 ]
 
 const togglePanel = () => {
@@ -99,7 +42,7 @@ onMounted(() => {
 
 <template>
   <!-- Theme Toggle Button -->
-  <button class="theme-selector-btn" @click="togglePanel" title="Tema Seç">
+  <button class="theme-selector-btn" @click="togglePanel" :title="t('theme.title')">
     <Palette class="w-5 h-5 text-white" />
   </button>
 
@@ -113,7 +56,7 @@ onMounted(() => {
   <!-- Theme Panel -->
   <div class="theme-panel" :class="{ open: isOpen }">
     <div class="flex justify-between items-center mb-6">
-      <h3 class="text-white text-lg font-semibold">Tema Seç</h3>
+      <h3 class="text-white text-lg font-semibold">{{ t('theme.title') }}</h3>
       <button 
         @click="closePanel"
         class="p-2 rounded-lg hover:bg-white/10 transition-colors"
@@ -160,8 +103,8 @@ onMounted(() => {
             />
           </div>
           <div>
-            <h4 class="text-white font-medium">{{ theme.name }}</h4>
-            <p class="text-white/50 text-sm">{{ theme.description }}</p>
+            <h4 class="text-white font-medium">{{ t(`theme.${theme.key}.name`) }}</h4>
+            <p class="text-white/50 text-sm">{{ t(`theme.${theme.key}.desc`) }}</p>
           </div>
         </div>
 
@@ -170,7 +113,7 @@ onMounted(() => {
           v-if="currentTheme === theme.id"
           class="mt-3 text-center text-xs text-white/60 py-1 bg-white/5 rounded"
         >
-          ✓ Aktif
+          ✓ {{ t('theme.active') }}
         </div>
       </div>
     </div>

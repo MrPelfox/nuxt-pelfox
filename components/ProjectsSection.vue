@@ -1,6 +1,9 @@
 <script setup lang="ts">
 import { Star, Smartphone } from 'lucide-vue-next'
 import { Button } from '@/components/ui/button'
+import { useLanguage } from '~/composables/useLanguage'
+
+const { t } = useLanguage()
 
 const projects = [
   {
@@ -53,7 +56,7 @@ const projects = [
           </div>
 
           <a :href="project.link" target="_blank">
-            <Button class="w-full mt-auto">View</Button>
+            <Button class="w-full mt-auto">{{ t('buttons.view') }}</Button>
           </a>
         </div>
       </article>
